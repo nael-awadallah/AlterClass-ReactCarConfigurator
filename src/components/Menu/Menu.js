@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 // Styles
-import './Menu.css';
+import "./Menu.css";
 // Icons
-import { FaMoon, FaSun } from 'react-icons/fa';
+import { FaMoon, FaSun } from "react-icons/fa";
 
 /*
  * TODO: Refactor Menu as a functional component
@@ -21,10 +21,15 @@ class Menu extends React.Component {
   };
 
   handleOnChangeMode = () => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       ...prevState,
       darkMode: !prevState.darkMode,
     }));
+    if (this.state.darkMode) {
+      document.body.classList.remove("dark-mode");
+    } else {
+      document.body.classList.add("dark-mode");
+    }
   };
 
   render() {
@@ -36,7 +41,7 @@ class Menu extends React.Component {
 
     return (
       <div className="menu-container">
-        <a href="https://alterclass.io/courses/react" className="logo">
+        <a href="/" className="logo">
           <img src={brandLogo} alt="AlterClass" />
         </a>
         <ul className="menu-nav">
@@ -44,7 +49,7 @@ class Menu extends React.Component {
             <li
               key={item}
               onClick={() => this.props.onSelectItem(i)}
-              className={this.props.selectedItem === i ? 'selected' : null}
+              className={this.props.selectedItem === i ? "selected" : null}
             >
               <h2>{item}</h2>
             </li>
